@@ -4,8 +4,8 @@ import { TransactionContext } from '../context/globalState'
 const IncomeExpense = () => {
     const transaction = useContext(TransactionContext)
 
-    const income = transaction.filter(value => value.amount > 0).reduce((income, value) => (income += value.amount), 0)
-    const expense = transaction.filter(value => value.amount < 0).reduce((income, value) => (income += value.amount), 0)
+    const income = transaction.mystate.filter(value => value.amount > 0).reduce((income, value) => (income += value.amount), 0)
+    const expense = transaction.mystate.filter(value => value.amount < 0).reduce((income, value) => (income += value.amount), 0)
     return (
         <div className='incomeexpense'>
             <div>

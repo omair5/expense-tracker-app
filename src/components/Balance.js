@@ -8,7 +8,7 @@ const Balance = () => {
         <div className='balance'>
             <h3>YOUR BALANCE <br />
                 <span>
-                    ${transaction.reduce((balance, value) =>
+                    ${transaction.mystate.reduce((balance, value) =>
                         (balance += value.amount),0
                     )}
                 </span></h3>
