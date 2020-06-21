@@ -96,7 +96,7 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-button {
+.my-button {
   width: 100%;
   margin: 10px 0px;
   padding: 10px;
@@ -111,4 +111,22 @@ button {
 
 .border-green {
   border-right: 3px solid green;
+}
+
+.green-button {
+  background-color: green;
+  width: 100%;
+  margin: 10px 0px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.red-button {
+  background-color: red;
+  width: 100%;
+  margin: 10px 0px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
 }

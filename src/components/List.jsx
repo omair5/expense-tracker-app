@@ -5,7 +5,7 @@ const List = () => {
     const { mystate, dispatch } = useContext(TransactionContext)
     return (
         <div className='list'>
-            <h3>HISTORY</h3>
+            <h3>{mystate.length === 0 ? 'NO HISTORY YET' : 'HISTORY'}</h3>
             <hr />
 
 
