@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import { TransactionContext } from '../context/globalState'
 
 const Balance = () => {
-    const transaction = useContext(TransactionContext)
+    const {mystate} = useContext(TransactionContext)
 
     return (
         <div className='balance'>
             <h3>YOUR BALANCE <br />
                 <span>
-                    ${transaction.mystate.reduce((balance, value) =>
-                        (balance += value.amount),0
+                    ${mystate.reduce((balance, value) =>
+                        (balance += parseInt(value.amount)),0
                     )}
                 </span></h3>
         </div>

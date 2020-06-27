@@ -2,10 +2,12 @@ import React, { useContext } from 'react';
 import { TransactionContext } from '../context/globalState'
 
 const IncomeExpense = () => {
-    const transaction = useContext(TransactionContext)
+    const { mystate } = useContext(TransactionContext)
+    console.log(mystate)
 
-    const income = transaction.mystate.filter(value => value.amount > 0).reduce((income, value) => (income += value.amount), 0)
-    const expense = transaction.mystate.filter(value => value.amount < 0).reduce((income, value) => (income += value.amount), 0)
+    const income = mystate.filter(value => value.amount > 0).reduce((income, value) => (income += +value.amount), 0)
+    console.log(income)
+    const expense = mystate.filter(value => value.amount < 0).reduce((income, value) => (income += +value.amount), 0)
     return (
         <div className='incomeexpense'>
             <div>
