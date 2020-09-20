@@ -22,7 +22,7 @@ const NewTransaction = () => {
 
 return (
     <div className='list'>
-        <h3>ADD NEW TRANSACTION</h3>
+        <h3 style={{ padding: '5px 0px' }}>ADD NEW TRANSACTION</h3>
         <hr />
         <form className='myform' onSubmit={HandleSubmit}>
 
@@ -32,7 +32,7 @@ return (
             </div>
 
             <div className="for-input">
-                <p>Amount <br />(Negative-Expense,Positive-Income</p>
+                <p>Amount <br />(Negative Amount=Expense , Positive Amount=Income)</p>
                 <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} required placeholder="ENTER AMOUNT...." />
             </div>
 

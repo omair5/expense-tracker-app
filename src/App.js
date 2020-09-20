@@ -10,12 +10,14 @@ import { MyProvider } from './context/globalState'
 function App() {
   return (
     <MyProvider>
-      <div className="container">
-        <Header />
-        <Balance />
-        <IncomeExpense />
-        <List />
-        <NewTransaction />
+      <div className={'main-window'}>
+        <div className="container">
+          <Header />
+          <Balance />
+          <IncomeExpense />
+          <List />
+          <NewTransaction />
+        </div>
       </div>
     </MyProvider>
   );
