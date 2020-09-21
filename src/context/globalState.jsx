@@ -1,5 +1,8 @@
 import React, { createContext, useReducer } from 'react';
 import MyReducer from './MyReducer'
+import ReducerForValueText from './ReducerForValueText'
+import ReducerForValueAmount from './ReducerForValueAmount'
+import ReducerForUpdate from './ReducerForUpdate';
 
 export const TransactionContext = createContext()
 
@@ -11,21 +14,32 @@ const initialTransaction = [
 ]
 
 export const MyProvider = ({ children }) => {
+    // for list
     const [mystate, dispatch] = useReducer(MyReducer, initialTransaction)
-    console.log(mystate)
+    const [text, TextDispatch] = useReducer(ReducerForValueText, '')
+    const [amount, AmountDispatch] = useReducer(ReducerForValueAmount, '')
+    const [forUpdate, UpdateDispatch] = useReducer(ReducerForUpdate, false)
 
-    // ACTIONS
-    // function deleteTransaction(id) {
-    //     dispatch({
-    //         type: 'DELETE_TRANSACTION',
-    //         payload: id
-    //     })
-    // }
+
+    const handleUpdate = (id) => {
+        const { description, amount } = mystate[id]
+        TextDispatch({ type: 'ValueForUpdate', payload: description })
+        AmountDispatch({ type: 'ValueForUpdate', payload: amount })
+        dispatch({ type: 'DELETE_TRANSACTION', payload: id })
+        UpdateDispatch({ type: 'ChangeState', payload: true })
+    }
 
     return (
         <TransactionContext.Provider value={{
             mystate,
-            dispatch
+            dispatch,
+            text,
+            amount,
+            AmountDispatch,
+            TextDispatch,
+            handleUpdate,
+            forUpdate,
+            UpdateDispatch
             // deleteTransaction
         }}>
             {children}

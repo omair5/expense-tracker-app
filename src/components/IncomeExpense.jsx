@@ -4,10 +4,10 @@ import CountUp from 'react-countup';
 
 const IncomeExpense = () => {
     const { mystate } = useContext(TransactionContext)
-    console.log(mystate)
+    
 
     const income = mystate.filter(value => value.amount > 0).reduce((income, value) => (income += +value.amount), 0)
-    console.log(income)
+    
     const expense = mystate.filter(value => value.amount < 0).reduce((income, value) => (income += +value.amount), 0)
     return (
         <div className='incomeexpense'>

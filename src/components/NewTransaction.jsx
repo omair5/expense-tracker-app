@@ -1,13 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { TransactionContext } from '../context/globalState'
 
 
 const NewTransaction = () => {
-    const [text, setText] = useState('')
-    const [amount, setAmount] = useState('')
-    const { mystate, dispatch } = useContext(TransactionContext)
 
-    
+    const { mystate, dispatch, text, TextDispatch, amount, AmountDispatch, forUpdate, UpdateDispatch } = useContext(TransactionContext)
+
+
 
     const HandleSubmit = (e) => {
         e.preventDefault()
@@ -15,35 +14,38 @@ const NewTransaction = () => {
             type: 'ADD_TRANSACTION',
             payload: { description: text, amount: amount, id: mystate.length }
         })
-        setText('')
-        setAmount('')
-         
+        TextDispatch({ type: 'empty', payload: '' })
+        AmountDispatch({ type: 'empty', payload: '' })
+        UpdateDispatch({ type: 'ChangeState', payload: false })
+
     }
 
-return (
-    <div className='list'>
-        <h3 style={{ padding: '5px 0px' }}>ADD NEW TRANSACTION</h3>
-        <hr />
-        <form className='myform' onSubmit={HandleSubmit}>
+    return (
+        <div className='list'>
+            <h3 style={{ padding: '5px 0px' }}>ADD NEW TRANSACTION</h3>
+            <hr />
+            <form className='myform' onSubmit={HandleSubmit}>
 
-            <div className="for-input">
-                <p>Text</p>
-                <input type="text" value={text} onChange={(e) => setText(e.target.value)} required placeholder="ENTER TEXT...." />
-            </div>
+                <div className='for-input' >
+                    <p>Text</p>
+                    <input className={`${forUpdate && 'inputforupdate'}`} type="text" value={text} onChange={(e) => TextDispatch({ type: 'setText', payload: e.target.value })} required placeholder="ENTER TEXT...." />
+                </div>
 
-            <div className="for-input">
-                <p>Amount <br />(Negative Amount=Expense , Positive Amount=Income)</p>
-                <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} required placeholder="ENTER AMOUNT...." />
-            </div>
+                <div className="for-input">
+                    <p>Amount <br />(Negative Amount=Expense , Positive Amount=Income)</p>
+                    <input className={`${forUpdate && 'inputforupdate'}`} type="number" value={amount} onChange={(e) => AmountDispatch({ type: 'setAmount', payload: e.target.value })} required placeholder="ENTER AMOUNT...." />
+                </div>
 
-            <button className={amount === '' ? "my-button" : amount >= 0 ? "green-button" : "red-button"}>
-                {amount === '' ? "ADD" : amount < 0 ? "ADD EXPENSE" : "ADD INCOME"}
+                <button className={amount === '' ? "my-button" : amount >= 0 ? "green-button" : "red-button"}>
+                    {forUpdate ? "UPDATE" :
+                         amount === '' ? "ADD" : amount < 0 ? "ADD EXPENSE" : "ADD INCOME"}
 
-            </button>
-        </form>
-    </div >
 
-);
+                </button>
+            </form>
+        </div >
+
+    );
 }
 
 export default NewTransaction;
