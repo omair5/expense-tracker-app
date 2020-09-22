@@ -6,6 +6,8 @@ const MyReducer = (state, action) => {
             return [...state.filter((value, index) => value.id !== action.payload)]
         case 'ADD_TRANSACTION':
             return [...state, action.payload]
+        case 'reset':
+            return []
         default:
             return state
     }

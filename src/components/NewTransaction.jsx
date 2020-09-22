@@ -12,7 +12,7 @@ const NewTransaction = () => {
         e.preventDefault()
         dispatch({
             type: 'ADD_TRANSACTION',
-            payload: { description: text, amount: amount, id: mystate.length }
+            payload: { description: text, amount: amount, id: mystate.length, date: new Date() }
         })
         TextDispatch({ type: 'empty', payload: '' })
         AmountDispatch({ type: 'empty', payload: '' })
@@ -27,8 +27,8 @@ const NewTransaction = () => {
             <form className='myform' onSubmit={HandleSubmit}>
 
                 <div className='for-input' >
-                    <p>Text</p>
-                    <input className={`${forUpdate && 'inputforupdate'}`} type="text" value={text} onChange={(e) => TextDispatch({ type: 'setText', payload: e.target.value })} required placeholder="ENTER TEXT...." />
+                    <p>Description</p>
+                    <input className={`${forUpdate && 'inputforupdate'}`} type="text" value={text} onChange={(e) => TextDispatch({ type: 'setText', payload: e.target.value })} required placeholder="ENTER DESCRIPTION...." />
                 </div>
 
                 <div className="for-input">
@@ -38,7 +38,7 @@ const NewTransaction = () => {
 
                 <button className={amount === '' ? "my-button" : amount >= 0 ? "green-button" : "red-button"}>
                     {forUpdate ? "UPDATE" :
-                         amount === '' ? "ADD" : amount < 0 ? "ADD EXPENSE" : "ADD INCOME"}
+                        amount === '' ? "ADD" : amount < 0 ? "ADD EXPENSE" : "ADD INCOME"}
 
 
                 </button>
