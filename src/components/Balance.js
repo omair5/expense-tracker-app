@@ -4,16 +4,16 @@ import CountUp from 'react-countup';
 import Toggler from './toggler'
 
 const Balance = () => {
-    const { mystate } = useContext(TransactionContext)
+    const { mystate, ToggleState: { checkedC: currencyToggler } } = useContext(TransactionContext)
 
     return (
         <div className='balance-container'>
             <div className='balance'>
                 <h3>YOUR BALANCE</h3>
                 <h1 style={{ color: 'rgb(88, 180, 241)' }}>
-                    $<CountUp end={mystate.reduce((balance, value) =>
-                    (balance += parseInt(value.amount)), 0
-                )} duration={1.2} separator="," />
+                    {currencyToggler ? '$' : 'Rs'} < CountUp end={mystate.reduce((balance, value) =>
+                        (balance += parseInt(value.amount)), 0
+                    )} duration={1.2} separator="," />
                 </h1>
             </div>
             <div style={{ paddingRight: '10px' }}>

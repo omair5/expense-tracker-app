@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { TransactionContext } from '../context/globalState'
+import { v4 as uuidv4 } from 'uuid';
 
 
 const NewTransaction = () => {
 
-    const { mystate, dispatch, text, TextDispatch, amount, AmountDispatch, forUpdate, UpdateDispatch } = useContext(TransactionContext)
+    const { dispatch, text, TextDispatch, amount, AmountDispatch, forUpdate, UpdateDispatch } = useContext(TransactionContext)
 
 
 
@@ -12,7 +13,7 @@ const NewTransaction = () => {
         e.preventDefault()
         dispatch({
             type: 'ADD_TRANSACTION',
-            payload: { description: text, amount: amount, id: mystate.length, date: new Date() }
+            payload: { description: text, amount: amount, id: uuidv4(), date: new Date() }
         })
         TextDispatch({ type: 'empty', payload: '' })
         AmountDispatch({ type: 'empty', payload: '' })

@@ -1,10 +1,10 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import FormGroup from '@material-ui/core/FormGroup';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
-
+import {TransactionContext} from '../context/globalState'
 const AntSwitch = withStyles((theme) => ({
     root: {
         width: 28,
@@ -41,14 +41,9 @@ const AntSwitch = withStyles((theme) => ({
 
 
 export default function Toggler() {
-    const [state, setState] = React.useState({
-        checkedA: true,
-        checkedB: true,
-        checkedC: true,
-    });
-
+    const{ToggleState,setToggleState}=useContext(TransactionContext)
     const handleChange = (event) => {
-        setState({ ...state, [event.target.name]: event.target.checked });
+        setToggleState({ ...ToggleState, [event.target.name]: event.target.checked });
     };
 
     return (
@@ -57,7 +52,7 @@ export default function Toggler() {
                 <Grid component="label" container alignItems="center" spacing={1}>
                     <Grid item>Rs</Grid>
                     <Grid item>
-                        <AntSwitch checked={state.checkedC} onChange={handleChange} name="checkedC" />
+                        <AntSwitch checked={ToggleState.checkedC} onChange={handleChange} name="checkedC" />
                     </Grid>
                     <Grid item>$</Grid>
                 </Grid>

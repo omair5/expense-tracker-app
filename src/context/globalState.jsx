@@ -14,20 +14,29 @@ const initialTransaction = [
 ]
 
 export const MyProvider = ({ children }) => {
-    // for list
+    // REDUCERS
     const [mystate, dispatch] = useReducer(MyReducer, initialTransaction)
     const [text, TextDispatch] = useReducer(ReducerForValueText, '')
     const [amount, AmountDispatch] = useReducer(ReducerForValueAmount, '')
     const [forUpdate, UpdateDispatch] = useReducer(ReducerForUpdate, false)
 
-
+    // METHOD
     const handleUpdate = (id) => {
-        const { description, amount } = mystate[id]
+        console.log("from handleUpdate", id)
+        const [valueForUpdate]= mystate.filter(value => (value.id === id))
+        const { description, amount } = valueForUpdate
         TextDispatch({ type: 'ValueForUpdate', payload: description })
         AmountDispatch({ type: 'ValueForUpdate', payload: amount })
         dispatch({ type: 'DELETE_TRANSACTION', payload: id })
         UpdateDispatch({ type: 'ChangeState', payload: true })
     }
+    // FOR TOGGLER
+    const [ToggleState, setToggleState] = React.useState({
+        checkedA: true,
+        checkedB: true,
+        checkedC: true,
+    });
+
 
     return (
         <TransactionContext.Provider value={{
@@ -39,7 +48,9 @@ export const MyProvider = ({ children }) => {
             TextDispatch,
             handleUpdate,
             forUpdate,
-            UpdateDispatch
+            UpdateDispatch,
+            ToggleState,
+            setToggleState
             // deleteTransaction
         }}>
             {children}
