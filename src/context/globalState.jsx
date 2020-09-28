@@ -1,8 +1,9 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useEffect, useReducer } from 'react';
 import MyReducer from './MyReducer'
 import ReducerForValueText from './ReducerForValueText'
 import ReducerForValueAmount from './ReducerForValueAmount'
 import ReducerForUpdate from './ReducerForUpdate';
+
 
 export const TransactionContext = createContext()
 
@@ -19,11 +20,12 @@ export const MyProvider = ({ children }) => {
     const [text, TextDispatch] = useReducer(ReducerForValueText, '')
     const [amount, AmountDispatch] = useReducer(ReducerForValueAmount, '')
     const [forUpdate, UpdateDispatch] = useReducer(ReducerForUpdate, false)
+   
 
     // METHOD
     const handleUpdate = (id) => {
         console.log("from handleUpdate", id)
-        const [valueForUpdate]= mystate.filter(value => (value.id === id))
+        const [valueForUpdate] = mystate.filter(value => (value.id === id))
         const { description, amount } = valueForUpdate
         TextDispatch({ type: 'ValueForUpdate', payload: description })
         AmountDispatch({ type: 'ValueForUpdate', payload: amount })
@@ -36,6 +38,11 @@ export const MyProvider = ({ children }) => {
         checkedB: true,
         checkedC: true,
     });
+
+    useEffect(() => {
+        dispatch({ type: 'FROM LOCALSTORAGE', payload: JSON.parse(localStorage.getItem('mystate')) })
+    }, [])
+
 
 
     return (

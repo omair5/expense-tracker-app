@@ -1,25 +1,33 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { TransactionContext } from '../context/globalState'
 import { v4 as uuidv4 } from 'uuid';
 
-
 const NewTransaction = () => {
 
-    const { dispatch, text, TextDispatch, amount, AmountDispatch, forUpdate, UpdateDispatch } = useContext(TransactionContext)
 
-
+    const { mystate, dispatch, text, TextDispatch, amount, AmountDispatch, forUpdate, UpdateDispatch} = useContext(TransactionContext)
 
     const HandleSubmit = (e) => {
         e.preventDefault()
+        const dateObj = new Date()
+        const date = dateObj.toDateString()
+        const time = dateObj.toLocaleTimeString()
         dispatch({
             type: 'ADD_TRANSACTION',
-            payload: { description: text, amount: amount, id: uuidv4(), date: new Date() }
+            payload: { description: text, amount: amount, id: uuidv4(), date: date, time: time }
         })
         TextDispatch({ type: 'empty', payload: '' })
         AmountDispatch({ type: 'empty', payload: '' })
         UpdateDispatch({ type: 'ChangeState', payload: false })
 
     }
+
+    // TO SAVE DATA IN LOCAL STORAGE
+    useEffect(() => {
+        if (mystate.length !== 0) {
+            localStorage.setItem('mystate', JSON.stringify(mystate))
+        }
+    }, [mystate])
 
     return (
         <div className='list'>

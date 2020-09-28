@@ -94,6 +94,7 @@
 
 .box-1 {
   flex-basis: 75%;
+  overflow-x: auto;
   display: flex;
   justify-content: space-around;
   text-align: left;
@@ -105,6 +106,14 @@
   justify-content: flex-end;
   padding-right: 10px;
 }
+
+.box-child {
+  flex-basis: 33%;
+  overflow: auto;
+}
+
+
+
 
 .background-red {
   background-color: rgb(224, 32, 32);
@@ -125,9 +134,7 @@
 
 .unclickable {
   pointer-events: none;
-
 }
-
 
 .myform {
   margin-top: 10px;
@@ -138,11 +145,13 @@
   padding: 10px;
   margin: 3px 0px;
 }
-.inputforupdate{
+
+.inputforupdate {
   border: 3px solid black;
   background-color: rgb(88, 180, 241);
   font-weight: bolder;
 }
+
 /* Chrome, Safari, Edge, Opera */
 
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
@@ -189,5 +198,8 @@ input[type=number] {
   .container {
     width: 100vw;
     height: 100vh;
+  }
+  body{
+    font-size: 75%;
   }
 }

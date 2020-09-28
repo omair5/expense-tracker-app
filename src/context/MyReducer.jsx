@@ -1,5 +1,5 @@
 const MyReducer = (state, action) => {
- 
+
     switch (action.type) {
         case 'DELETE_TRANSACTION':
             return [...state.filter((value, index) => value.id !== action.payload)]
@@ -7,6 +7,8 @@ const MyReducer = (state, action) => {
             return [...state, action.payload]
         case 'reset':
             return []
+        case 'FROM LOCALSTORAGE':
+            return action.payload
         default:
             return state
     }
