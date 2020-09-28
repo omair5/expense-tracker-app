@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 const NewTransaction = () => {
 
 
-    const { mystate, dispatch, text, TextDispatch, amount, AmountDispatch, forUpdate, UpdateDispatch} = useContext(TransactionContext)
+    const { mystate, dispatch, text, TextDispatch, amount, AmountDispatch, forUpdate, UpdateDispatch } = useContext(TransactionContext)
 
     const HandleSubmit = (e) => {
         e.preventDefault()
@@ -42,7 +42,7 @@ const NewTransaction = () => {
 
                 <div className="for-input">
                     <p>Amount <br />(Negative Amount=Expense , Positive Amount=Income)</p>
-                    <input className={`${forUpdate && 'inputforupdate'}`} type="number" value={amount} onChange={(e) => AmountDispatch({ type: 'setAmount', payload: e.target.value })} required placeholder="ENTER AMOUNT...." />
+                    <input className={`${forUpdate && 'inputforupdate'}`} type="number" pattern=' /^[0-9 ()+-]+$/' value={amount} onChange={(e) => AmountDispatch({ type: 'setAmount', payload: e.target.value })} required placeholder="ENTER AMOUNT...." />
                 </div>
 
                 <button className={amount === '' ? "my-button" : amount >= 0 ? "green-button" : "red-button"}>
