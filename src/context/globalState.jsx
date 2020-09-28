@@ -20,7 +20,7 @@ export const MyProvider = ({ children }) => {
     const [text, TextDispatch] = useReducer(ReducerForValueText, '')
     const [amount, AmountDispatch] = useReducer(ReducerForValueAmount, '')
     const [forUpdate, UpdateDispatch] = useReducer(ReducerForUpdate, false)
-   
+
 
     // METHOD
     const handleUpdate = (id) => {
@@ -40,7 +40,8 @@ export const MyProvider = ({ children }) => {
     });
 
     useEffect(() => {
-        dispatch({ type: 'FROM LOCALSTORAGE', payload: JSON.parse(localStorage.getItem('mystate')) })
+        if (localStorage.getItem('mystate') !== null)
+            dispatch({ type: 'FROM LOCALSTORAGE', payload: JSON.parse(localStorage.getItem('mystate')) })
     }, [])
 
 

@@ -6,8 +6,9 @@ const IncomeExpense = () => {
     const { mystate, ToggleState: { checkedC: currencyToggler } } = useContext(TransactionContext)
 
     const income = mystate.filter(value => value.amount > 0).reduce((income, value) => (income += +value.amount), 0)
-
     const expense = mystate.filter(value => value.amount < 0).reduce((income, value) => (income += +value.amount), 0)
+
+
     return (
         <div className='incomeexpense'>
             <div>
