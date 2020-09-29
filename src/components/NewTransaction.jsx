@@ -11,7 +11,7 @@ const NewTransaction = () => {
         e.preventDefault()
         const dateObj = new Date()
         const date = dateObj.toDateString()
-        const time = dateObj.toLocaleTimeString()
+        const time = dateObj.toLocaleTimeString('en-US', { hour12: true })
         dispatch({
             type: 'ADD_TRANSACTION',
             payload: { description: text, amount: amount, id: uuidv4(), date: date, time: time }
