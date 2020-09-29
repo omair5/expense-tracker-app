@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 const NewTransaction = () => {
 
 
-    const { mystate, dispatch, text, TextDispatch, amount, AmountDispatch, forUpdate, UpdateDispatch} = useContext(TransactionContext)
+    const { mystate, dispatch, text, TextDispatch, amount, AmountDispatch, forUpdate, UpdateDispatch } = useContext(TransactionContext)
 
     const HandleSubmit = (e) => {
         e.preventDefault()
@@ -22,12 +22,20 @@ const NewTransaction = () => {
 
     }
 
+
     // TO SAVE DATA IN LOCAL STORAGE
     useEffect(() => {
         if (mystate.length !== 0) {
             localStorage.setItem('mystate', JSON.stringify(mystate))
         }
     }, [mystate])
+
+    // FOR INVALID AMOUNT INPUT
+    const handleInvalid = (e) => {
+
+        e.target.setCustomValidity('Only numbers with - and + sign are allowed !');
+
+    }
 
     return (
         <div className='list'>
@@ -41,8 +49,9 @@ const NewTransaction = () => {
                 </div>
 
                 <div className="for-input">
-                    <p>Amount <br />(Negative Amount=Expense , Positive Amount=Income)</p>
-                    <input className={`${forUpdate && 'inputforupdate'}`} type="number" inputmode="text" value={amount} onChange={(e) => AmountDispatch({ type: 'setAmount', payload: e.target.value })} required placeholder="ENTER AMOUNT...." />
+                    <p>Amount </p>
+                    <h5>(Negative Amount=Expense , Positive Amount=Income)</h5>
+                    <input className={`${forUpdate && 'inputforupdate'}`} type="text" pattern="^[0-9 +-]*$" value={amount} onChange={(e) => AmountDispatch({ type: 'setAmount', payload: e.target.value })} required placeholder="ENTER AMOUNT...." onInvalid={(e) => { handleInvalid(e) }} />
                 </div>
 
                 <button className={amount === '' ? "my-button" : amount >= 0 ? "green-button" : "red-button"}>

@@ -21,7 +21,6 @@ const List = () => {
 
             {
                 mystate.map((value, index) => {
-                    console.log(value)
                     return (
                         <div className={`listitem ${value.amount < 0 ? 'background-red' : 'background-green'}`} key={index}>
                             <div className='box-1'>
