@@ -164,32 +164,33 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
-
-.my-button {
-  width: 100%;
-  margin: 10px 0px;
-  padding: 10px;
-  border: none;
-  background-color: rgb(88, 180, 241);
-  cursor: pointer;
+.validation-error{
+  font-size: 12px;
+  color: red;
 }
-
 .green-button {
-  background-color: green;
-  width: 100%;
-  margin: 10px 0px;
+  background-color: rgb(16, 192, 16);
+  width: 49%;
+  margin: 10px 2px;
   padding: 10px;
   border: none;
   cursor: pointer;
+  border-radius: 8px;
+  font-weight: bolder;
 }
 
 .red-button {
-  background-color: red;
-  width: 100%;
-  margin: 10px 0px;
+  background-color: rgb(224, 32, 32);
+  width: 49%;
+  margin: 10px 2px;
   padding: 10px;
   border: none;
   cursor: pointer;
+  border-radius: 8px;
+  font-weight: bolder;
+}
+.red-button:hover,.green-button:hover{
+  scale: 1.035;
 }
 
 /* MEDIA QUERY */

@@ -39,6 +39,7 @@ export const MyProvider = ({ children }) => {
         checkedC: true,
     });
 
+    // READING LOCAL STORAGE DATA ON APP LOAD
     useEffect(() => {
         if (localStorage.getItem('mystate') !== null)
             dispatch({ type: 'FROM LOCALSTORAGE', payload: JSON.parse(localStorage.getItem('mystate')) })
