@@ -25,7 +25,7 @@ const List = () => {
                         <div className={`listitem ${value.amount < 0 ? 'background-red' : 'background-green'}`} key={index}>
                             <div className='box-1'>
                                 <h3 className='box-child '>{value.description}</h3>
-                                <h3 className='box-child child-2'>{currencyToggler ? '$' : 'Rs'} {value.amount < 0 ? ` -${Math.abs(value.amount)}` : value.amount}</h3>
+                                <h3 className='box-child child-2'>{currencyToggler ? '$' : 'Rs'} {Math.abs(value.amount)}</h3>
                                 <div className='box-child '>
                                     <h5> {value.date}</h5>
                                     <h5>{value.time}</h5>

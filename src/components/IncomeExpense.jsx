@@ -15,7 +15,7 @@ const IncomeExpense = () => {
                 <h5 className='income'>INCOME <br /><span>{currencyToggler ? '$' : 'Rs'} <CountUp end={income} duration={1.2} separator=',' /></span></h5>
             </div>
             <div>
-                <h5 className='expense'>EXPENSE <br /><span>{currencyToggler ? '$' : 'Rs'} <CountUp end={expense} duration={1.2} separator=',' /></span></h5>
+                <h5 className='expense'>EXPENSE <br /><span>{currencyToggler ? '$' : 'Rs'} <CountUp end={Math.abs(expense)} duration={1.2} separator=',' /></span></h5>
             </div>
         </div>
     );

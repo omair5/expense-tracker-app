@@ -34,7 +34,7 @@ const NewTransaction = () => {
             else {
                 dispatch({
                     type: 'ADD_TRANSACTION',
-                    payload: { description: text, amount: -amount, id: uuidv4(), date: date, time: time }
+                    payload: { description: text, amount: `-${Math.abs(amount)}`, id: uuidv4(), date: date, time: time }
                 })
             }
             TextDispatch({ type: 'empty', payload: '' })
@@ -77,14 +77,13 @@ const NewTransaction = () => {
                     {validationError.amountvalid ? <span className={'validation-error'}>This Field Only Except Numbers & It Should Not Be Empty</span> : null}
                     <input className={`${forUpdate && 'inputforupdate'}`} type="number" value={amount} onChange={AmountHandler} placeholder="ENTER AMOUNT...." />
                 </div>
-
                 {/* <button className={amount === '' ? "my-button" : amount >= 0 ? "green-button" : "red-button"}>
                     {forUpdate ? "UPDATE" :
                         amount === '' ? "ADD" : amount < 0 ? "ADD EXPENSE" : "ADD INCOME"}
 
 
                 </button> */}
-                <div>
+                <div className={'button-container'}>
                     <button className={'green-button'} onClick={HandleSubmit}>ADD INCOME</button>
                     <button className={'red-button'} onClick={HandleSubmit}>ADD EXPENSE</button>
                 </div>

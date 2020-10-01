@@ -21,14 +21,12 @@ export const MyProvider = ({ children }) => {
     const [amount, AmountDispatch] = useReducer(ReducerForValueAmount, '')
     const [forUpdate, UpdateDispatch] = useReducer(ReducerForUpdate, false)
 
-
     // METHOD
     const handleUpdate = (id) => {
-        console.log("from handleUpdate", id)
         const [valueForUpdate] = mystate.filter(value => (value.id === id))
         const { description, amount } = valueForUpdate
         TextDispatch({ type: 'ValueForUpdate', payload: description })
-        AmountDispatch({ type: 'ValueForUpdate', payload: amount })
+        AmountDispatch({ type: 'ValueForUpdate', payload: `${Math.abs(amount)}` })
         dispatch({ type: 'DELETE_TRANSACTION', payload: id })
         UpdateDispatch({ type: 'ChangeState', payload: true })
     }
