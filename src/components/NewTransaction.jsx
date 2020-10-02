@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { TransactionContext } from '../context/globalState'
 import { v4 as uuidv4 } from 'uuid';
 
 const NewTransaction = () => {
     // --------------------LOGIC
-    const { mystate, dispatch, text, TextDispatch, amount, AmountDispatch, forUpdate, UpdateDispatch } = useContext(TransactionContext)
+    const { dispatch, text, TextDispatch, amount, AmountDispatch, forUpdate, UpdateDispatch } = useContext(TransactionContext)
     const [validationError, setValidationError] = useState({ textvalid: false, amountvalid: false })
 
     // AMOUNT HANDLER
@@ -50,13 +50,6 @@ const NewTransaction = () => {
             }
         }
     }
-
-    // TO SAVE DATA IN LOCAL STORAGE
-    useEffect(() => {
-        if (mystate.length !== 0) {
-            localStorage.setItem('mystate', JSON.stringify(mystate))
-        }
-    }, [mystate])
 
 
     // --------------------USER INTERFACE

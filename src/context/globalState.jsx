@@ -41,8 +41,14 @@ export const MyProvider = ({ children }) => {
     useEffect(() => {
         if (localStorage.getItem('mystate') !== null)
             dispatch({ type: 'FROM LOCALSTORAGE', payload: JSON.parse(localStorage.getItem('mystate')) })
+        console.log('i m 1st')
     }, [])
-
+    
+    // TO SAVE DATA IN LOCAL STORAGE
+    useEffect(() => {
+        localStorage.setItem('mystate', JSON.stringify(mystate))
+        console.log('i m 2nd')
+    }, [mystate])
 
 
     return (
